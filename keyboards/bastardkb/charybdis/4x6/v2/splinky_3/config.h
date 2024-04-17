@@ -26,11 +26,25 @@
 // #define SPLIT_HAND_PIN_LOW_IS_LEFT  // High -> right, Low -> left.
 
 /* SPI & PMW3360 settings. */
+#define SPLIT_POINTING_ENABLE
+#define POINTING_DEVICE_RIGHT
 #define SPI_DRIVER SPID0
 #define SPI_SCK_PIN GP22
 #define SPI_MISO_PIN GP20
 #define SPI_MOSI_PIN GP23
 #define POINTING_DEVICE_CS_PIN GP16
+
+/* VBUS detection. */
+#define USB_VBUS_PIN GP19
+
+
+#define MATRIX_COL_PINS_RIGHT { GP27, GP28 , GP21 , GP6, GP7, GP8 }
+#define MATRIX_ROW_PINS_RIGHT { GP29, GP26 , GP5 , GP4 , GP9 }
+
+#define MATRIX_COL_PINS { GP16 , GP28 , GP21 , GP6, GP7, GP8 }
+#define MATRIX_ROW_PINS { GP29, GP26 , GP5 , GP4 , GP23 }
+
+#define SPLIT_LAYER_STATE_ENABLE
 
 /* Reset. */
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET

@@ -18,7 +18,7 @@
 
 #ifdef VIA_ENABLE
 /* VIA configuration. */
-#    define DYNAMIC_KEYMAP_LAYER_COUNT 4
+#    define DYNAMIC_KEYMAP_LAYER_COUNT 6
 #endif // VIA_ENABLE
 
 /* Disable unused features. */
@@ -26,9 +26,13 @@
 
 /* Charybdis-specific features. */
 
-#ifdef POINTING_DEVICE_ENABLE
-// Automatically enable the pointer layer when moving the trackball.  See also:
-// - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS`
-// - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD`
-// #define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-#endif // POINTING_DEVICE_ENABLE
+// Configure the global tapping term (default: 200ms)
+#define TAPPING_TERM 210
+
+// Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
+#define QUICK_TAP_TERM 0
+
+#define MACCEL_TAKEOFF 2.0      // lower/higher value = curve takes off more smoothly/abrubtly
+#define MACCEL_GROWTH_RATE 0.25 // lower/higher value = curve reaches its upper limit slower/faster
+#define MACCEL_OFFSET 2.2       // lower/higher value = acceleration kicks in earlier/later
+#define MACCEL_LIMIT 6.0        // upper limit of accel curve (maximum acceleration factor)
