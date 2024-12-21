@@ -18,10 +18,14 @@
 
 enum layers {
   _QWERTY = 0,
+  _QUERTY_NO_HM,
   _SYM,
   _NAV,
-  _NUM
+  _NUM,
 };
+
+// Set the default layer to the no homemod layer
+#define TG_NOHM TG(_QUERTY_NO_HM)
 
 #define SYM MO(_SYM)
 #define NAV MO(_NAV)
@@ -60,6 +64,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LCTL, KC_LGUI, KC_LALT, SYM,     KC_SPC,  KC_BSPC,         SYM,     NUM,     NAV,     KC_DOWN, KC_UP,   KC_RCTL
 ),
 
+/* Qwerty no home row mods
+ * ,-----------------------------------------. ,-----------------------------------------.
+ * |   `  |  1   |  2   |  3   |  4   |  5   | |  6   |  7   |  8   |  9   |  0   |  Del |
+ * |------+------+------+------+------+------| |------+------+------+------+------+------|
+ * | Tab  |  Q   |  W   |  E   |  R   |  T   | |  Y   |  U   |  I   |  O   |  P   | Print|
+ * |------+------+------+------+------+------| |------+------+------+------+------+------|
+ * | Esc  |  A   |  S   |  D   |  F   |  G   | |  H   |  J   |  K   |  L   |  ;   | Entr |
+ * |------+------+------+------+------+------| |------+------+------+------+------+------|
+ * | Shft |  Z   |  X   |  C   |  V   |  B   | |  N   |  M   |  ,   |  .   |  /   | Shft |
+ * |------+------+------+------+------+------| |------+------+------+------+------+------|
+ * | Ctrl |  GUI | Alt  | SYM  | Spac | BkSp | | SYM  |  NUM | NAV  | Down |  Up  | Ctrl |
+ * `-----------------------------------------' `-----------------------------------------'
+ */
+[_QUERTY_NO_HM] = LAYOUT_ortho_5x12(
+    KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,            KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
+    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_PSCR,
+    KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,            KC_H,    HOME_J,  HOME_K,  HOME_L,  KC_SCLN, KC_ENT,
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,            KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+    KC_LCTL, KC_LGUI, KC_LALT, SYM,     KC_SPC,  KC_BSPC,         SYM,     NUM,     NAV,     KC_DOWN, KC_UP,   KC_RCTL
+),
+
 /* Function and numpad
 * ,------------------------------------------. ,-----------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  | |      |   7  |   8  |   9  |   *  |      |
@@ -83,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Navigation
  * ,-----------------------------------------. ,-----------------------------------------.
- * |      |      |      |      |      |      | |      |      | PgUp |      |      |      |
+ * | NOHM |      |      |      |      |      | |      |      | PgUp |      |      |      |
  * |------+------+------+------+------+------| |------+------+------+------+------+------|
  * |      |      |      |      |      |      | |      |      |  Up  |      |      |      |
  * |------+------+------+------+------+------| |------+------+------+------+------+------|
@@ -95,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------' `-----------------------------------------'
  */
 [_NAV] = LAYOUT_ortho_5x12(
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX, XXXXXXX, KC_PGUP, XXXXXXX, XXXXXXX, XXXXXXX,
+    TG_NOHM, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX, XXXXXXX, KC_PGUP, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX, XXXXXXX, KC_UP,   XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,         KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,  XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX, XXXXXXX, KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX,
